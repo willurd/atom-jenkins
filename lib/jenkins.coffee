@@ -3,13 +3,19 @@ Q = require('q')
 extend = require('extend')
 _ = require('underscore')
 
+baseColors = ['red', 'yellow', 'blue', 'grey', 'disabled', 'aborted', 'nobuilt']
+colors = baseColors.concat(baseColors.map (color) -> "#{color}_anime")
+
 module.exports =
 class Jenkins
-  constructor: (hostname, username, token) ->
+  colors: colors
+  statuses: colors.map (color) -> "status-#{color}"
+
+  constructor: (hostname, username, password) ->
     @options =
       hostname: hostname
-      port: 443
-      auth: "#{username}:#{token}"
+      auth: "#{username}:#{password}"
+      agent: false
 
   # ======================================================================
   # Request Methods
@@ -20,11 +26,14 @@ class Jenkins
     options = extend {}, @options,
       method: method,
       path: path
+    result = ''
 
-    https.request options, (err, rest...) ->
-      console.log 'response', err, rest...
-      if err deferred.reject(err)
-      else   deferred.resolve(rest...)
+    req = https.request options, (res) ->
+      res.on 'data', (chunk) -> result += chunk.toString()
+      res.on 'end', -> deferred.resolve(JSON.parse(result))
+
+    req.on 'error', deferred.reject
+    req.end()
 
     return deferred.promise
 
@@ -38,5 +47,7 @@ class Jenkins
 
   job: (name) =>
     @get '/api/json?tree=jobs[name,url,color]'
-      .then (rest...) => console.log '[job-then]:', rest...,
-            (err) => console.log '[job-err]:', err
+      .then (result) =>
+        _.find result.jobs, (job) -> job.name == name
+      , (err) =>
+        console.log '[job-err]:', err
