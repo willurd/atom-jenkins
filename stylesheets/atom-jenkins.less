@@ -6,6 +6,13 @@
 
 .atom-jenkins {
   .job.status {
-    &.status-blue { color: #3cdc6b; }
+    &.status-blue, &.status-blue_anime { color: #3cdc6b; }
+    &.status-red, &.status-red_anime { color: #EB8787; }
+    &.status-disabled, &.status-disabled_anime { background-color: #8F8F8F, color: #000000; padding: 0 2px; }
+
+    /* &.status-yellow, &.status-yellow_anime { color: #fff; } */
+    /* &.status-grey, &.status-grey_anime { color: #fff; } */
+    /* &.status-aborted, &.status-aborted_anime { color: #fff; } */
+    /* &.status-nobuilt, &.status-nobuilt_anime { color: #fff; } */
   }
 }

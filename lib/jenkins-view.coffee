@@ -6,7 +6,7 @@ path = require('path')
 module.exports =
 class JenkinsView extends View
   @content: ->
-    @div class: 'inline-block', =>
+    @div class: 'atom-jenkins inline-block', =>
       @span class: 'job status', outlet: 'status', '(Jenkins)'
 
   initialize: ->

@@ -3,7 +3,15 @@ Q = require('q')
 extend = require('extend')
 _ = require('underscore')
 
-baseColors = ['red', 'yellow', 'blue', 'grey', 'disabled', 'aborted', 'nobuilt']
+baseColors = [
+  'red', # Failed
+  'yellow',
+  'blue', # Success
+  'grey',
+  'disabled', # Disabled
+  'aborted', # Aborted
+  'nobuilt'
+]
 colors = baseColors.concat(baseColors.map (color) -> "#{color}_anime")
 
 module.exports =
