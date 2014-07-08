@@ -26,7 +26,7 @@ class JenkinsView extends View
     atom.workspaceView.command "atom-jenkins:toggle", @toggle
     @attach()
 
-  attach:  => atom.workspaceView.statusBar?.appendLeft(@)
+  attach:  => atom.workspaceView.statusBar?.appendRight(@)
   destroy: => @detach()
   toggle:  => if @hasParent() then @detach() else @attach()
 
