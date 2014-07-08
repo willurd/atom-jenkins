@@ -1,0 +1,14 @@
+{
+  "name": "atom-jenkins",
+  "main": "./lib/atom-jenkins",
+  "version": "0.0.0",
+  "description": "An atom plugin for reporting the status of Jenkins jobs",
+  "activationEvents": [],
+  "repository": "https://github.com/atom/atom-jenkins",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

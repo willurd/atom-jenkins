@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable Jenkins': 'atom-jenkins:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Jenkins'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'atom-jenkins:toggle' }
+      ]
+    ]
+  }
+]
